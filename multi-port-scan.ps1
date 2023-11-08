@@ -8,8 +8,4 @@
  # 2. there is too much overhead in our output - can you please omit warnings and try to make it a single line, one for each port check result?
  # 
  # ========================================== #>
-
-Test-NetConnection 192.168.1.1 -Port 22
-Test-NetConnection 192.168.1.1 -Port 80
-Test-NetConnection 192.168.1.1 -Port 139
-Test-NetConnection 192.168.1.1 -Port 443
+@(22, 80, 139, 443) | ForEach-Object { nc -vz 192.168.1.1 $_ }
